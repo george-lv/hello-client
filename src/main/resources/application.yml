@@ -1,9 +1,17 @@
 spring:
   application:
     name: hello-client
+  sleuth:
+     enabled: true
+     sampler:
+        percentage: 1
+  zipkin:
+    baseUrl: http://localhost:9411
+    enabled: true
 
 server:
   port: 8072
+
 
 eureka:
   client:
