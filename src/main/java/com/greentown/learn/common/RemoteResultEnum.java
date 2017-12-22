@@ -1,4 +1,4 @@
-package com.greentown.learn.cloud;
+package com.greentown.learn.common;
 
 public enum RemoteResultEnum {
 	SUCCESS(0, "成功"), 

@@ -1,9 +1,15 @@
 package com.greentown.learn.cloud;
 
+import com.greentown.learn.common.CallRemoteResult;
+import com.greentown.learn.service.SmsService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +19,9 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/rest/hello/client")
 public class HelloResource {
 
-
+	@Autowired
+	SmsService smsService;
+	
     @Autowired
     private RestTemplate restTemplate;
 
@@ -42,6 +50,12 @@ public class HelloResource {
         return restTemplate.getForObject(url, String.class)+ " including client";
     }
     
+    @RequestMapping(value="/sendMsg",method = RequestMethod.POST)
+    public void sendMessage(@RequestBody Map<String, String> paramMap){
+    	
+    	smsService.sendMsg(paramMap);
+    	
+    }
     
     @RequestMapping(value="/sendAuthCode",method = RequestMethod.POST)
     public boolean sendAuthCode() {
