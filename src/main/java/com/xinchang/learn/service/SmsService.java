@@ -1,21 +1,22 @@
-package com.greentown.learn.service;
+package com.xinchang.learn.service;
 
 import java.util.Map;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.greentown.learn.common.CallRemoteResult;
+import com.greentown.smscenter.result.CallRemoteResult;
+
+
 
 
 @FeignClient(value = "myapp")
 @Service
 public interface SmsService {
 	
-	@RequestMapping(value="/rest/sms/sendMsg",method = RequestMethod.POST)
+	@PostMapping(value="/rest/sms/sendMsg")
 	public CallRemoteResult<Boolean> sendMsg(@RequestBody Map<String, String> paramMap);
 	
 

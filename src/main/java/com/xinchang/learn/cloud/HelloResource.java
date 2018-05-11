@@ -1,17 +1,19 @@
-package com.greentown.learn.cloud;
+package com.xinchang.learn.cloud;
 
-import com.greentown.learn.common.CallRemoteResult;
-import com.greentown.learn.service.SmsService;
+
+import com.greentown.smscenter.result.CallRemoteResult;
+import com.greentown.smscenter.ro.SendAuthCodeRO;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import com.xinchang.learn.service.SmsService;
 
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -50,14 +52,19 @@ public class HelloResource {
         return restTemplate.getForObject(url, String.class)+ " including client";
     }
     
-    @RequestMapping(value="/sendMsg",method = RequestMethod.POST)
-    public void sendMessage(@RequestBody Map<String, String> paramMap){
+    @PostMapping(value="/sendMsg")
+    public boolean sendMessage(@RequestBody Map<String, String> paramMap){
+    	CallRemoteResult<Boolean> remoteResult=smsService.sendMsg(paramMap);
     	
-    	smsService.sendMsg(paramMap);
+    	//System.out.println(remoteResult.getReturnObject());
+    	
+    	boolean result=remoteResult.getReturnObject();
+    	
+    	return result; 
     	
     }
     
-    @RequestMapping(value="/sendAuthCode",method = RequestMethod.POST)
+    @PostMapping(value="/sendAuthCode")
     public boolean sendAuthCode() {
         String url = "http://MYAPP/rest/sms/sendAuthCode";
         SendAuthCodeRO obj=new SendAuthCodeRO();

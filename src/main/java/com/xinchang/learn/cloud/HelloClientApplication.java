@@ -1,4 +1,4 @@
-package com.greentown.learn.cloud;
+package com.xinchang.learn.cloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

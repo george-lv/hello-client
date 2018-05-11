@@ -1,4 +1,4 @@
-package com.techprimers.cloud;
+package com.greentown.learn.cloud;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
