@@ -1,11 +1,11 @@
 package com.xinchang.learn.cloud;
 
 
-import com.greentown.smscenter.result.CallRemoteResult;
-import com.greentown.smscenter.ro.SendAuthCodeRO;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.xinchang.learn.service.SmsService;
+import com.xinchang.smscenter.result.CallRemoteResult;
+import com.xinchang.smscenter.ro.SendAuthCodeRO;
 
 import java.util.Map;
 

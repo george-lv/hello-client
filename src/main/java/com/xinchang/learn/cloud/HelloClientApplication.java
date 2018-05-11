@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableCircuitBreaker
 @EnableDiscoveryClient
 @SpringBootApplication
-@EnableFeignClients(basePackages ="com.greentown.learn.service")
+@EnableFeignClients(basePackages ="com.xinchang.learn.service")
 public class HelloClientApplication {
 
 	public static void main(String[] args) {
